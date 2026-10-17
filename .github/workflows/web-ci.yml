@@ -1,0 +1,22 @@
+name: Web Integrity CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    name: HTML & Asset Integrity Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Verify Web Core Files
+        run: |
+          test -f index.html
+          test -f styles.css
+          echo "Core website files verified!"
